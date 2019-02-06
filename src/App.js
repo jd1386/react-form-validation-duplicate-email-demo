@@ -14,7 +14,9 @@ class App extends Component {
     );
 
     const users = response.data;
-    const isUserFound = users.filter(user => user.email === typedEmail).length;
+    const isUserFound = users.filter(
+      user => user.email.toLowerCase() === typedEmail.toLowerCase()
+    ).length;
 
     isUserFound
       ? this.setState({
@@ -26,18 +28,6 @@ class App extends Component {
           isDuplicateUser: false
         });
   }
-
-  // handleOnChangePromise(typedEmail) {
-  //   axios.get('https://jsonplaceholder.typicode.com/users').then(response => {
-  //     const users = response.data;
-  //     const isUserFound = users.filter(user => user.email === typedEmail)
-  //       .length;
-
-  //     isUserFound
-  //       ? this.setState({ isDuplicateUser: true })
-  //       : this.setState({ isDuplicateUser: false });
-  //   });
-  // }
 
   emailInputClassName() {
     if (this.state.typedEmail) {
